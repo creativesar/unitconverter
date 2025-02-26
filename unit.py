@@ -9,8 +9,9 @@ st.markdown(
     """
     <style>
         /* General Styling */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #fafafa; /* Pure off-white background */
             color: #333; /* Dark gray text */
             margin: 0;
@@ -42,10 +43,21 @@ st.markdown(
             font-size: 16px;
             transition: all 0.3s ease-in-out;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .stButton>button:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(to right, #81C784, #4CAF50);
+        }
+        .stButton>button:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         /* Input Fields */
