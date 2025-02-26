@@ -4,15 +4,15 @@ import streamlit as st
 st.set_page_config(page_title="📏 Unit Converter", layout="wide", page_icon="📏")
 st.title("📏 Unit Converter")
 
-# Custom Styling for enhanced UI/UX (Minimalist Design)
+# Custom Styling for enhanced UI/UX (Modern Design)
 st.markdown(
     """
     <style>
         /* General Styling */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fafafa; /* Pure off-white background */
-            color: #333; /* Dark gray text */
+            font-family: 'Poppins', sans-serif;
+            background-color: #1e1e2f; /* Dark background */
+            color: #ffffff; /* White text */
             margin: 0;
             padding: 0;
         }
@@ -29,13 +29,13 @@ st.markdown(
             animation: fadeIn 1s ease-in-out;
             font-size: 2.5rem;
             font-weight: bold;
-            color: #4CAF50; /* Green accent */
+            color: #00d1b2; /* Teal accent */
             margin-bottom: 20px;
         }
 
         /* Button Styling */
         .stButton>button {
-            background: linear-gradient(to right, #4CAF50, #81C784);
+            background: linear-gradient(to right, #00d1b2, #00b5a1);
             color: white;
             border-radius: 12px;
             padding: 12px 24px;
@@ -51,43 +51,46 @@ st.markdown(
         /* Input Fields */
         .stNumberInput>div>div,
         .stSelectbox>div>div {
-            background: #fff;
-            border: 1px solid #ddd;
+            background: #2a2a40;
+            border: 1px solid #444;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease-in-out;
+            color: #ffffff;
         }
         .stNumberInput>div>div:focus-within,
         .stSelectbox>div>div:focus-within {
-            border-color: #4CAF50;
+            border-color: #00d1b2;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         /* Result Box */
         .result-box {
-            background: #fff;
-            border: 1px solid #ddd;
+            background: #2a2a40;
+            border: 1px solid #444;
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
             animation: fadeIn 1s ease-in-out;
+            color: #ffffff;
         }
 
         /* Footer */
         .footer {
             text-align: center;
             padding: 20px;
-            background: #f9f9f9;
+            background: #2a2a40;
             border-radius: 12px;
             margin-top: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            color: #ffffff;
         }
 
         /* Sidebar Styling */
         .sidebar .css-1d391kg {
-            background: #f9f9f9;
-            border-right: 1px solid #ddd;
+            background: #2a2a40;
+            border-right: 1px solid #444;
             box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
         }
     </style>
@@ -232,7 +235,7 @@ if st.button("Convert"):
     st.markdown(
         f"""
         <div class="result-box">
-            <h3 style="color: #4CAF50;">✅ Conversion Successful!</h3>
+            <h3 style="color: #00d1b2;">✅ Conversion Successful!</h3>
             <p><strong>{value:.2f} {from_unit}</strong> is equal to <strong>{result:.2f} {to_unit}</strong>.</p>
             <p><strong>Explanation:</strong></p>
             <ul>
@@ -249,7 +252,7 @@ if st.button("Convert"):
 st.markdown(
     """
     <div class="footer">
-        <h3 style="color: #4CAF50;">🚀 Developed by Sarfraz Ahmad</h3>
+        <h3 style="color: #00d1b2;">🚀 Developed by Sarfraz Ahmad</h3>
         <p>Convert units like a pro with this intuitive tool!</p>
     </div>
     """,
