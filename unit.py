@@ -11,8 +11,8 @@ st.markdown(
         /* General Styling */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #1e1e2f; /* Dark background */
-            color: #ffffff; /* White text */
+            background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+            color: #ffffff;
             margin: 0;
             padding: 0;
         }
@@ -29,8 +29,9 @@ st.markdown(
             animation: fadeIn 1s ease-in-out;
             font-size: 2.5rem;
             font-weight: bold;
-            color: #00d1b2; /* Teal accent */
+            color: #00d1b2;
             margin-bottom: 20px;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         /* Button Styling */
@@ -42,6 +43,7 @@ st.markdown(
             font-size: 16px;
             transition: all 0.3s ease-in-out;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
         }
         .stButton>button:hover {
             transform: scale(1.05);
@@ -92,6 +94,27 @@ st.markdown(
             background: #2a2a40;
             border-right: 1px solid #444;
             box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Gradient Background for Sections */
+        .gradient-bg {
+            background: linear-gradient(135deg, #00d1b2, #00b5a1);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        /* Hover Effects */
+        .hover-effect:hover {
+            transform: scale(1.02);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Glow Effect */
+        .glow {
+            box-shadow: 0 0 20px rgba(0, 209, 178, 0.5);
         }
     </style>
     """,
@@ -234,7 +257,7 @@ elif unit_category == "Time":
 if st.button("Convert"):
     st.markdown(
         f"""
-        <div class="result-box">
+        <div class="result-box gradient-bg hover-effect">
             <h3 style="color: #00d1b2;">✅ Conversion Successful!</h3>
             <p><strong>{value:.2f} {from_unit}</strong> is equal to <strong>{result:.2f} {to_unit}</strong>.</p>
             <p><strong>Explanation:</strong></p>
@@ -251,7 +274,7 @@ if st.button("Convert"):
 # Add a footer
 st.markdown(
     """
-    <div class="footer">
+    <div class="footer gradient-bg hover-effect">
         <h3 style="color: #00d1b2;">🚀 Developed by Sarfraz Ahmad</h3>
         <p>Convert units like a pro with this intuitive tool!</p>
     </div>
