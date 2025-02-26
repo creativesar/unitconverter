@@ -4,14 +4,14 @@ import streamlit as st
 st.set_page_config(page_title="📏 Unit Converter", layout="wide", page_icon="📏")
 st.title("📏 Unit Converter")
 
-# Custom Styling for enhanced UI/UX (Modern Design)
+# Custom Styling for a Modern, Trendy, and Awesome UI
 st.markdown(
     """
     <style>
         /* General Styling */
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #1e1e2f; /* Dark background */
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2); /* Vibrant gradient background */
             color: #ffffff; /* White text */
             margin: 0;
             padding: 0;
@@ -29,76 +29,93 @@ st.markdown(
             animation: fadeIn 1s ease-in-out;
             font-size: 2.5rem;
             font-weight: bold;
-            color: #00d1b2; /* Teal accent */
+            color: #ffffff; /* White text */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow for depth */
+        }
+
+        /* Glassmorphism Effect for Containers */
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+            backdrop-filter: blur(10px); /* Blur effect */
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            padding: 20px;
             margin-bottom: 20px;
         }
 
         /* Button Styling */
         .stButton>button {
-            background: linear-gradient(to right, #00d1b2, #00b5a1);
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Gradient button */
             color: white;
+            border: none;
             border-radius: 12px;
             padding: 12px 24px;
             font-size: 16px;
+            font-weight: bold;
             transition: all 0.3s ease-in-out;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .stButton>button:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         /* Input Fields */
         .stNumberInput>div>div,
         .stSelectbox>div>div {
-            background: #2a2a40;
-            border: 1px solid #444;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Light border */
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease-in-out;
-            color: #ffffff;
+            color: #ffffff; /* White text */
         }
         .stNumberInput>div>div:focus-within,
         .stSelectbox>div>div:focus-within {
-            border-color: #00d1b2;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-color: #ff9a9e; /* Gradient color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         /* Result Box */
         .result-box {
-            background: #2a2a40;
-            border: 1px solid #444;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+            backdrop-filter: blur(10px); /* Blur effect */
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Soft shadow */
             padding: 20px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
             animation: fadeIn 1s ease-in-out;
-            color: #ffffff;
+            color: #ffffff; /* White text */
         }
 
         /* Footer */
         .footer {
             text-align: center;
             padding: 20px;
-            background: #2a2a40;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+            backdrop-filter: blur(10px); /* Blur effect */
+            border-radius: 20px;
             margin-top: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            color: #ffffff;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            color: #ffffff; /* White text */
         }
 
         /* Sidebar Styling */
         .sidebar .css-1d391kg {
-            background: #2a2a40;
-            border-right: 1px solid #444;
-            box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+            backdrop-filter: blur(10px); /* Blur effect */
+            border-right: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+            box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
         }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-# Unit conversion functions
+# Unit conversion functions (same as before)
 def convert_length(value, from_unit, to_unit):
     """Convert length units."""
     conversions = {
@@ -235,7 +252,7 @@ if st.button("Convert"):
     st.markdown(
         f"""
         <div class="result-box">
-            <h3 style="color: #00d1b2;">✅ Conversion Successful!</h3>
+            <h3 style="color: #ff9a9e;">✅ Conversion Successful!</h3>
             <p><strong>{value:.2f} {from_unit}</strong> is equal to <strong>{result:.2f} {to_unit}</strong>.</p>
             <p><strong>Explanation:</strong></p>
             <ul>
@@ -252,7 +269,7 @@ if st.button("Convert"):
 st.markdown(
     """
     <div class="footer">
-        <h3 style="color: #00d1b2;">🚀 Developed by Sarfraz Ahmad</h3>
+        <h3 style="color: #ff9a9e;">🚀 Developed by Sarfraz Ahmad</h3>
         <p>Convert units like a pro with this intuitive tool!</p>
     </div>
     """,
