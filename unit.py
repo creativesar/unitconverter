@@ -4,15 +4,15 @@ import streamlit as st
 st.set_page_config(page_title="📏 Unit Converter", layout="wide", page_icon="📏")
 st.title("📏 Unit Converter")
 
-# Custom Styling for enhanced UI/UX (Modern Design)
+# Custom Styling for enhanced UI/UX (Minimalist Design)
 st.markdown(
     """
     <style>
         /* General Styling */
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1e1e2f, #2a2a40);
-            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa; /* Pure off-white background */
+            color: #333; /* Dark gray text */
             margin: 0;
             padding: 0;
         }
@@ -29,21 +29,19 @@ st.markdown(
             animation: fadeIn 1s ease-in-out;
             font-size: 2.5rem;
             font-weight: bold;
-            color: #00d1b2;
+            color: #4CAF50; /* Green accent */
             margin-bottom: 20px;
-            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         /* Button Styling */
         .stButton>button {
-            background: linear-gradient(to right, #00d1b2, #00b5a1);
+            background: linear-gradient(to right, #4CAF50, #81C784);
             color: white;
             border-radius: 12px;
             padding: 12px 24px;
             font-size: 16px;
             transition: all 0.3s ease-in-out;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border: none;
         }
         .stButton>button:hover {
             transform: scale(1.05);
@@ -53,68 +51,44 @@ st.markdown(
         /* Input Fields */
         .stNumberInput>div>div,
         .stSelectbox>div>div {
-            background: #2a2a40;
-            border: 1px solid #444;
+            background: #fff;
+            border: 1px solid #ddd;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease-in-out;
-            color: #ffffff;
         }
         .stNumberInput>div>div:focus-within,
         .stSelectbox>div>div:focus-within {
-            border-color: #00d1b2;
+            border-color: #4CAF50;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         /* Result Box */
         .result-box {
-            background: #2a2a40;
-            border: 1px solid #444;
+            background: #fff;
+            border: 1px solid #ddd;
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
             animation: fadeIn 1s ease-in-out;
-            color: #ffffff;
         }
 
         /* Footer */
         .footer {
             text-align: center;
             padding: 20px;
-            background: #2a2a40;
+            background: #f9f9f9;
             border-radius: 12px;
             margin-top: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            color: #ffffff;
         }
 
         /* Sidebar Styling */
         .sidebar .css-1d391kg {
-            background: #2a2a40;
-            border-right: 1px solid #444;
+            background: #f9f9f9;
+            border-right: 1px solid #ddd;
             box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Gradient Background for Sections */
-        .gradient-bg {
-            background: linear-gradient(135deg, #00d1b2, #00b5a1);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-
-        /* Hover Effects */
-        .hover-effect:hover {
-            transform: scale(1.02);
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Glow Effect */
-        .glow {
-            box-shadow: 0 0 20px rgba(0, 209, 178, 0.5);
         }
     </style>
     """,
@@ -133,7 +107,6 @@ def convert_length(value, from_unit, to_unit):
         "yard": 0.9144,
         "foot": 0.3048,
         "inch": 0.0254,
-        "nautical mile": 1852,
     }
     return value * conversions[from_unit] / conversions[to_unit]
 
@@ -145,8 +118,6 @@ def convert_weight(value, from_unit, to_unit):
         "milligram": 0.000001,
         "pound": 0.453592,
         "ounce": 0.0283495,
-        "tonne": 1000,
-        "stone": 6.35029,
     }
     return value * conversions[from_unit] / conversions[to_unit]
 
@@ -178,22 +149,6 @@ def convert_volume(value, from_unit, to_unit):
         "quart": 0.946353,
         "pint": 0.473176,
         "cup": 0.24,
-        "cubic meter": 1000,
-        "cubic foot": 28.3168,
-        "cubic inch": 0.0163871,
-    }
-    return value * conversions[from_unit] / conversions[to_unit]
-
-def convert_time(value, from_unit, to_unit):
-    """Convert time units."""
-    conversions = {
-        "second": 1,
-        "minute": 60,
-        "hour": 3600,
-        "day": 86400,
-        "week": 604800,
-        "month": 2628000,
-        "year": 31536000,
     }
     return value * conversions[from_unit] / conversions[to_unit]
 
@@ -201,7 +156,7 @@ def convert_time(value, from_unit, to_unit):
 st.sidebar.header("📐 Select Unit Category")
 unit_category = st.sidebar.selectbox(
     "Choose a category", 
-    ["Length", "Weight", "Temperature", "Volume", "Time"], 
+    ["Length", "Weight", "Temperature", "Volume"], 
     help="Select the type of unit you want to convert."
 )
 
@@ -211,18 +166,18 @@ st.header(f"🔢 {unit_category} Converter")
 if unit_category == "Length":
     col1, col2 = st.columns(2)
     with col1:
-        from_unit = st.selectbox("From", ["meter", "kilometer", "centimeter", "millimeter", "mile", "yard", "foot", "inch", "nautical mile"])
+        from_unit = st.selectbox("From", ["meter", "kilometer", "centimeter", "millimeter", "mile", "yard", "foot", "inch"])
     with col2:
-        to_unit = st.selectbox("To", ["meter", "kilometer", "centimeter", "millimeter", "mile", "yard", "foot", "inch", "nautical mile"])
+        to_unit = st.selectbox("To", ["meter", "kilometer", "centimeter", "millimeter", "mile", "yard", "foot", "inch"])
     value = st.number_input("Enter value", min_value=0.0, format="%.2f")
     result = convert_length(value, from_unit, to_unit)
 
 elif unit_category == "Weight":
     col1, col2 = st.columns(2)
     with col1:
-        from_unit = st.selectbox("From", ["kilogram", "gram", "milligram", "pound", "ounce", "tonne", "stone"])
+        from_unit = st.selectbox("From", ["kilogram", "gram", "milligram", "pound", "ounce"])
     with col2:
-        to_unit = st.selectbox("To", ["kilogram", "gram", "milligram", "pound", "ounce", "tonne", "stone"])
+        to_unit = st.selectbox("To", ["kilogram", "gram", "milligram", "pound", "ounce"])
     value = st.number_input("Enter value", min_value=0.0, format="%.2f")
     result = convert_weight(value, from_unit, to_unit)
 
@@ -238,34 +193,19 @@ elif unit_category == "Temperature":
 elif unit_category == "Volume":
     col1, col2 = st.columns(2)
     with col1:
-        from_unit = st.selectbox("From", ["liter", "milliliter", "gallon", "quart", "pint", "cup", "cubic meter", "cubic foot", "cubic inch"])
+        from_unit = st.selectbox("From", ["liter", "milliliter", "gallon", "quart", "pint", "cup"])
     with col2:
-        to_unit = st.selectbox("To", ["liter", "milliliter", "gallon", "quart", "pint", "cup", "cubic meter", "cubic foot", "cubic inch"])
+        to_unit = st.selectbox("To", ["liter", "milliliter", "gallon", "quart", "pint", "cup"])
     value = st.number_input("Enter value", min_value=0.0, format="%.2f")
     result = convert_volume(value, from_unit, to_unit)
 
-elif unit_category == "Time":
-    col1, col2 = st.columns(2)
-    with col1:
-        from_unit = st.selectbox("From", ["second", "minute", "hour", "day", "week", "month", "year"])
-    with col2:
-        to_unit = st.selectbox("To", ["second", "minute", "hour", "day", "week", "month", "year"])
-    value = st.number_input("Enter value", min_value=0.0, format="%.2f")
-    result = convert_time(value, from_unit, to_unit)
-
-# Display result with detailed explanation
+# Display result
 if st.button("Convert"):
     st.markdown(
         f"""
-        <div class="result-box gradient-bg hover-effect">
-            <h3 style="color: #00d1b2;">✅ Conversion Successful!</h3>
+        <div class="result-box">
+            <h3 style="color: #4CAF50;">✅ Conversion Successful!</h3>
             <p><strong>{value:.2f} {from_unit}</strong> is equal to <strong>{result:.2f} {to_unit}</strong>.</p>
-            <p><strong>Explanation:</strong></p>
-            <ul>
-                <li><strong>{from_unit}</strong> is converted to <strong>{to_unit}</strong> using the conversion factor.</li>
-                <li>The conversion factor for <strong>{from_unit}</strong> to <strong>{to_unit}</strong> is calculated based on their relationship to the base unit.</li>
-                <li>For example, 1 <strong>{from_unit}</strong> = {convert_length(1, from_unit, to_unit):.2f} <strong>{to_unit}</strong>.</li>
-            </ul>
         </div>
         """,
         unsafe_allow_html=True,
@@ -274,8 +214,8 @@ if st.button("Convert"):
 # Add a footer
 st.markdown(
     """
-    <div class="footer gradient-bg hover-effect">
-        <h3 style="color: #00d1b2;">🚀 Developed by Sarfraz Ahmad</h3>
+    <div class="footer">
+        <h3 style="color: #4CAF50;">🚀 Developed by Sarfraz Ahmad</h3>
         <p>Convert units like a pro with this intuitive tool!</p>
     </div>
     """,
