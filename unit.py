@@ -1,21 +1,17 @@
 import streamlit as st
 
 # Streamlit app configuration
-st.set_page_config(
-    page_title="📏 Ultimate Unit Converter",
-    layout="wide",
-    page_icon="📏",
-    initial_sidebar_state="expanded"
-)
+st.set_page_config(page_title="📏 Unit Converter", layout="wide", page_icon="📏")
+st.title("📏 Unit Converter")
 
-# Custom Styling for enhanced UI/UX (Modern Design)
+# Custom Styling for enhanced UI/UX (Minimalist Design)
 st.markdown(
     """
     <style>
         /* General Styling */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f5f5f5; /* Light gray background */
+            background-color: #fafafa; /* Pure off-white background */
             color: #333; /* Dark gray text */
             margin: 0;
             padding: 0;
@@ -93,23 +89,6 @@ st.markdown(
             background: #f9f9f9;
             border-right: 1px solid #ddd;
             box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Hover Effects */
-        .stSelectbox>div>div:hover,
-        .stNumberInput>div>div:hover {
-            transform: scale(1.02);
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Gradient Background for Header */
-        .gradient-header {
-            background: linear-gradient(to right, #4CAF50, #81C784);
-            color: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            animation: fadeIn 1s ease-in-out;
         }
     </style>
     """,
@@ -192,72 +171,16 @@ def convert_time(value, from_unit, to_unit):
     }
     return value * conversions[from_unit] / conversions[to_unit]
 
-def convert_speed(value, from_unit, to_unit):
-    """Convert speed units."""
-    conversions = {
-        "meter/second": 1,
-        "kilometer/hour": 0.277778,
-        "mile/hour": 0.44704,
-        "knot": 0.514444,
-        "foot/second": 0.3048,
-    }
-    return value * conversions[from_unit] / conversions[to_unit]
-
-def convert_area(value, from_unit, to_unit):
-    """Convert area units."""
-    conversions = {
-        "square meter": 1,
-        "square kilometer": 1e6,
-        "square mile": 2.59e6,
-        "square yard": 0.836127,
-        "square foot": 0.092903,
-        "square inch": 0.00064516,
-        "hectare": 10000,
-        "acre": 4046.86,
-    }
-    return value * conversions[from_unit] / conversions[to_unit]
-
-def convert_pressure(value, from_unit, to_unit):
-    """Convert pressure units."""
-    conversions = {
-        "pascal": 1,
-        "kilopascal": 1000,
-        "bar": 1e5,
-        "atmosphere": 101325,
-        "psi": 6894.76,
-    }
-    return value * conversions[from_unit] / conversions[to_unit]
-
-def convert_energy(value, from_unit, to_unit):
-    """Convert energy units."""
-    conversions = {
-        "joule": 1,
-        "kilojoule": 1000,
-        "calorie": 4.184,
-        "kilocalorie": 4184,
-        "watt-hour": 3600,
-        "electronvolt": 1.60218e-19,
-    }
-    return value * conversions[from_unit] / conversions[to_unit]
-
 # Sidebar for unit category selection
 st.sidebar.header("📐 Select Unit Category")
 unit_category = st.sidebar.selectbox(
     "Choose a category", 
-    ["Length", "Weight", "Temperature", "Volume", "Time", "Speed", "Area", "Pressure", "Energy"], 
+    ["Length", "Weight", "Temperature", "Volume", "Time"], 
     help="Select the type of unit you want to convert."
 )
 
 # Main conversion logic
-st.markdown(
-    f"""
-    <div class="gradient-header">
-        <h1>📏 Ultimate Unit Converter</h1>
-        <h3>🔢 {unit_category} Converter</h3>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+st.header(f"🔢 {unit_category} Converter")
 
 if unit_category == "Length":
     col1, col2 = st.columns(2)
@@ -303,42 +226,6 @@ elif unit_category == "Time":
         to_unit = st.selectbox("To", ["second", "minute", "hour", "day", "week", "month", "year"])
     value = st.number_input("Enter value", min_value=0.0, format="%.2f")
     result = convert_time(value, from_unit, to_unit)
-
-elif unit_category == "Speed":
-    col1, col2 = st.columns(2)
-    with col1:
-        from_unit = st.selectbox("From", ["meter/second", "kilometer/hour", "mile/hour", "knot", "foot/second"])
-    with col2:
-        to_unit = st.selectbox("To", ["meter/second", "kilometer/hour", "mile/hour", "knot", "foot/second"])
-    value = st.number_input("Enter value", min_value=0.0, format="%.2f")
-    result = convert_speed(value, from_unit, to_unit)
-
-elif unit_category == "Area":
-    col1, col2 = st.columns(2)
-    with col1:
-        from_unit = st.selectbox("From", ["square meter", "square kilometer", "square mile", "square yard", "square foot", "square inch", "hectare", "acre"])
-    with col2:
-        to_unit = st.selectbox("To", ["square meter", "square kilometer", "square mile", "square yard", "square foot", "square inch", "hectare", "acre"])
-    value = st.number_input("Enter value", min_value=0.0, format="%.2f")
-    result = convert_area(value, from_unit, to_unit)
-
-elif unit_category == "Pressure":
-    col1, col2 = st.columns(2)
-    with col1:
-        from_unit = st.selectbox("From", ["pascal", "kilopascal", "bar", "atmosphere", "psi"])
-    with col2:
-        to_unit = st.selectbox("To", ["pascal", "kilopascal", "bar", "atmosphere", "psi"])
-    value = st.number_input("Enter value", min_value=0.0, format="%.2f")
-    result = convert_pressure(value, from_unit, to_unit)
-
-elif unit_category == "Energy":
-    col1, col2 = st.columns(2)
-    with col1:
-        from_unit = st.selectbox("From", ["joule", "kilojoule", "calorie", "kilocalorie", "watt-hour", "electronvolt"])
-    with col2:
-        to_unit = st.selectbox("To", ["joule", "kilojoule", "calorie", "kilocalorie", "watt-hour", "electronvolt"])
-    value = st.number_input("Enter value", min_value=0.0, format="%.2f")
-    result = convert_energy(value, from_unit, to_unit)
 
 # Display result with detailed explanation
 if st.button("Convert"):
